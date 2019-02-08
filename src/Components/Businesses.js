@@ -34,7 +34,7 @@ export default class Business extends Component {
             </div>
         )})
     return (
-      <div>
+      <div className='businesses'>
         {displayCompany}
       </div>
     )

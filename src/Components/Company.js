@@ -8,6 +8,7 @@ export default class Company extends Component {
         address: '',
         businessName: '',
         employee: [],
+        services: [],
         id: '',
         img: '',
         summary: '',
@@ -28,6 +29,7 @@ export default class Company extends Component {
             address: data.address,
             businessName: data.businessName,
             employee: data.employee,
+            services: data.services,
             id: data.id,
             img: data.img,
             summary: data.summary
@@ -40,7 +42,7 @@ export default class Company extends Component {
   render(){
       let employees = this.state.employee.map(arr=>{
           return (
-            <div>
+            <div className='employeeCard'>
                 <h3> Name: {arr.name} </h3>
                 <h4> Rating: {arr.rating} </h4>
                 <img src={arr.img}/> 
@@ -48,14 +50,15 @@ export default class Company extends Component {
             )
       })
     return (
-      <div>
+      <div className='company'>
         <h1> {this.state.businessName} </h1>
         <img src={this.state.img} />
-        <h2> Summary: <br/> {this.state.summary} </h2> 
+        <h2 className='companySummary'> <span> Summary: </span> <p>{this.state.summary} </p> </h2> 
         <h2> Address: {this.state.address} </h2>
-        <h2> Employees: {employees}</h2>
-        <button onClick={()=>{ this.setState({ isOpen:true })}}> Book an Appointment </button>
-        <Modal employeeInfo = {this.state.employee} isOpen={this.state.isOpen} handleClose={this.handleClose}/>    
+        <div className='companyModal' onClick={()=>{ this.setState({ isOpen:true })}}> Book an Appointment </div>
+        <h2> Employees </h2>
+        {employees}
+        <Modal employeeInfo = {this.state.employee} services={this.state.services} isOpen={this.state.isOpen} handleClose={this.handleClose}/>    
       </div>
     )
   }

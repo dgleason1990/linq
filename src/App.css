@@ -1,1 +1,272 @@
-/* No CSS *//*# sourceMappingURL=App.css.map */
+@-webkit-keyframes bounce {
+  0% {
+    position: relative;
+    top: 0px;
+  }
+  50% {
+    position: relative;
+    top: 5px;
+  }
+  100% {
+    position: relative;
+    top: 0px;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    position: relative;
+    top: 0px;
+  }
+  50% {
+    position: relative;
+    top: 5px;
+  }
+  100% {
+    position: relative;
+    top: 0px;
+  }
+}
+
+@-webkit-keyframes spinny {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+}
+
+@keyframes spinny {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+}
+
+.navBar {
+  position: fixed;
+  z-index: 10;
+  -webkit-box-shadow: 0 0 3px black;
+          box-shadow: 0 0 3px black;
+  background-color: white;
+  width: 100vw;
+  height: 60px;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navBar a:visited {
+  color: black;
+}
+
+.home {
+  background-color: white;
+  padding-top: 60px;
+}
+
+.home a:visited {
+  color: black;
+}
+
+.genre {
+  background-color: white;
+  padding-top: 60px;
+}
+
+.genre .genreList {
+  padding: 10px;
+  width: 200px;
+  margin-top: 10px;
+  cursor: pointer;
+  border: thin black solid;
+}
+
+.genre .genreList:hover {
+  background-color: black;
+  color: white;
+}
+
+.businesses {
+  background-color: white;
+  padding-top: 60px;
+}
+
+.businesses .companyDisplay {
+  padding: 10px;
+  margin: 10px;
+  background-color: lightgrey;
+  height: 50vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.businesses .companyDisplay img {
+  width: 300px;
+}
+
+.businesses .companyDisplay div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px;
+  border: thin black solid;
+  width: 200px;
+  cursor: pointer;
+}
+
+.businesses .companyDisplay div:hover {
+  background-color: black;
+  color: white;
+}
+
+.company {
+  background-color: white;
+  padding-top: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.company img {
+  max-width: 500px;
+}
+
+.company .companySummary {
+  margin: 80px;
+}
+
+.company .companyModal {
+  border: thin black solid;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.company .companyModal:hover {
+  background-color: black;
+  color: white;
+}
+
+.company .employeeCard {
+  padding: 10px;
+  margin: 10px;
+  background-color: lightgrey;
+}
+
+#form-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#form-container .modalClose {
+  position: absolute;
+  margin: 10px;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+#form-container .modalClose:hover {
+  -webkit-animation-name: spinny;
+          animation-name: spinny;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+}
+
+#form-container .submissionForm .handleSubmission {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: thin black solid;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#form-container .submissionForm .handleSubmission:hover {
+  background-color: black;
+  color: white;
+}
+
+#form-container .submissionForm .rdt .rdtPicker .rdtDay.rdtDisabled {
+  background-color: red;
+  border: black thin solid;
+  cursor: none;
+}
+
+#form-container .submissionForm .rdt .rdtPicker .rdtDay {
+  cursor: pointer;
+}
+
+#form-container .submissionForm .rdt .rdtTimeToggle {
+  border: black thin solid;
+  cursor: pointer;
+}
+
+#form-container .submissionForm .rdt .rdtTimeToggle:hover {
+  background-color: black;
+  color: white;
+}
+
+#form-container .submissionForm .rdt .rdtCounters {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#form-container .submissionForm .rdt .rdtCounters .rdtBtn {
+  cursor: pointer;
+}
+
+#form-container .submissionForm .rdt .rdtCounters .rdtBtn:hover {
+  -webkit-animation-name: bounce;
+          animation-name: bounce;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+}
+/*# sourceMappingURL=App.css.map */

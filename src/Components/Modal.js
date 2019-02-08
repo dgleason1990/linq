@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import Datetime from 'react-datetime';
 
 class Modal extends Component {
-    constructor(){
-        super();
-        this.titleRef = React.createRef()
-    }
-
     state = {
+        hoursOfOperation:{
+            open: 8,
+            close: 12
+        },
         employeeName:'',
         clientName: '',
         booking: ''
@@ -32,13 +31,23 @@ class Modal extends Component {
     }
     render() {
         let createSelectList = this.props.employeeInfo.map(arr=>{
-            return <option value={arr.name} > { arr.name } </option>
+            return <option value={ arr.name } > { arr.name } </option>
         })
+
+        let createServiceList = this.props.services.map(arr=>{
+            return <option value={ arr } > { arr } </option>
+        })
+
+        var yesterday = Datetime.moment().subtract(1, 'day');
+        var valid = function( current ){
+            return current.isAfter( yesterday );
+        };
+
         return (
             <div style={{...flex, display: this.props.isOpen ? 'flex' : 'none'}}>
-                <div className="form-container" style={formModal}>
+                <div id="form-container" style={formModal}>
+                    <div className='modalClose' onClick={this.props.handleClose}>✖️</div>
                     <h1>Request an appointment</h1>
-                    <div className='modal-layer' onClick={this.props.handleClose} style={modalLayer}> X <br/> Close</div>
                     <form className="submissionForm">
                         <div className="employeeTitle"> 
                             <p> Choose your employee </p>
@@ -46,9 +55,30 @@ class Modal extends Component {
                                 { createSelectList }
                             </select>
                         </div>
-                        <h3>Your Name: <input onChange={ (e)=> this.setState({ clientName: e.target.value })}/> </h3>
-                        <Datetime />
-                        <button onClick={this.onSubmit}> Submit Request </button>
+                        <div className=''>
+                            <p> Choose your service </p>
+                            <select onChange= { (e) => this.setState({ service: e.target.value })}>
+                                { createServiceList }
+                            </select>
+                        </div>
+                        <div>Your Name </div>
+                        <input onChange={ (e)=> this.setState({ clientName: e.target.value })}/> 
+                        <div> Select a preferred date and time </div>
+                        <Datetime 
+                            timeConstraints = {{
+                                hours: {
+                                  min: this.state.hoursOfOperation.open,
+                                  max: this.state.hoursOfOperation.close,
+                                  step: 1,
+                                },
+                                minutes: {
+                                    min: 0,
+                                    max: 59,
+                                    step: 15
+                                }
+                            }}
+                            isValidDate = { valid }/>
+                        <div className='handleSubmission'onClick={this.onSubmit}> Submit Request </div>
                     </form>
                 </div>
             </div>
@@ -64,6 +94,7 @@ Modal.propTypes = {
 export default Modal;
 
 const flex = {
+    padding: '25px',
     position: 'fixed',
     display: 'flex',
     justifyContent: 'center',
@@ -77,15 +108,7 @@ const flex = {
     backgroundColor: 'rgba(57,57,57,0.6)',
 };
 
-const modalLayer = {
-    position: 'relative',
-    top: '-77px',
-    left: '450px',
-    zIndex: 1,
-    backgroundColor: 'transparent'
-  };
-  
-  const formModal = {
+const formModal = {
     position: 'absolute',
     color: 'rgb(57,57,57)',
     backgroundColor: '#FFFFFF',

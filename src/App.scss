@@ -1,0 +1,173 @@
+$cardColor: lightgrey;
+
+@keyframes bounce {
+    0%{position: relative; top: 0px };
+    50%{position: relative; top: 5px};
+    100%{position: relative; top:0px}
+}
+@keyframes spinny {
+    from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(90deg);
+      }
+}
+
+.navBar{
+    position: fixed;
+    z-index: 10;
+    box-shadow: 0 0 3px black;
+    background-color: white;
+    width: 100vw;
+    height: 60px;
+    color: black;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    a:visited{
+        color:black;
+    }
+}
+
+.home{
+    background-color: white;
+    padding-top: 60px;
+    a:visited{
+        color: black;
+    }
+}
+
+.genre{
+    background-color: white;
+    padding-top: 60px;
+    .genreList{
+        padding: 10px;
+        width: 200px;
+        margin-top: 10px;
+        cursor: pointer;
+        border: thin black solid;
+        &:hover{
+            background-color: black;
+            color: white;
+        }
+    }
+}
+
+.businesses{
+    background-color: white;
+    padding-top: 60px;
+    .companyDisplay{
+        padding: 10px;
+        margin: 10px;
+        background-color: $cardColor;
+        height: 50vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 300px;
+        }
+        div{
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            border: thin black solid;
+            width: 200px;
+            cursor: pointer;
+            &:hover{
+                background-color: black;
+                color: white
+            }
+        }
+    }
+}
+
+.company{
+    background-color: white;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img{
+        max-width: 500px;
+    }
+    .companySummary{
+        margin: 80px;
+    }
+    .companyModal{
+        border: thin black solid;
+        padding: 10px;
+        cursor: pointer;
+        &:hover{
+            background-color: black;
+            color: white;
+        }
+    }
+    .employeeCard{
+        padding: 10px;
+        margin: 10px;
+        background-color: $cardColor;
+    }
+}
+
+#form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .modalClose{
+        position: absolute;
+        margin: 10px;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        &:hover{
+            animation-name: spinny;
+            animation-duration: 2s;
+        }
+    }
+    .submissionForm{
+        .handleSubmission{
+            display: flex;
+            justify-content: center;
+            border: thin black solid;
+            padding: 10px;
+            cursor: pointer;
+            &:hover{
+                background-color: black;
+                color: white;
+            }
+        }
+        .rdt{
+            .rdtPicker{
+                .rdtDay.rdtDisabled{
+                    background-color: red;
+                    border: black thin solid;
+                    cursor: none;
+                }
+                .rdtDay{
+                    cursor: pointer;
+                }
+            }
+            .rdtTimeToggle{
+                border: black thin solid;
+                cursor: pointer;
+                &:hover{
+                    background-color:black;
+                    color: white;
+                }
+            }
+            .rdtCounters{
+                display: flex;
+                .rdtBtn{
+                    cursor: pointer;
+                    &:hover{
+                        animation-name: bounce;
+                        animation-duration: 0.5s;
+                    }
+                }
+            }
+        }
+    }
+}

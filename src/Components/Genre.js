@@ -9,13 +9,13 @@ export default class Businesses extends Component {
   render() {
     let displayGenre = this.state.genre.map(arr=>{
         return( 
-        <div onClick={ ()=>{ this.props.history.push('/Genre/' + arr.split(' ').join(''))} }>
+        <div className='genreList' onClick={ ()=>{ this.props.history.push('/Genre/' + arr.split(' ').join(''))} }>
           {arr} 
         </div>
       )})
      return (
-      <div className='Genre'>
-        {displayGenre}
+      <div className='genre'>
+        { displayGenre }
       </div>
     )
   }

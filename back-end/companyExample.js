@@ -16,5 +16,6 @@ module.exports = {
         name: 'Bob',
         rating: 3,
         img:'https://yt3.ggpht.com/a-/AAuE7mC75lyDOGkH_0L4_ZR6F4bfGviFjsMZIGa22w=s900-mo-c-c0xffffffff-rj-k-no'
-    }]
+    }],
+    services: ['Microblading','Waxing','Cutting']
 }
