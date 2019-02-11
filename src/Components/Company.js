@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Modal from './Modal'
-import { throws } from 'assert';
+import Modal from './Modal';
 
 export default class Company extends Component {
     state={

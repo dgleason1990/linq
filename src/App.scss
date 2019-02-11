@@ -14,6 +14,16 @@ $cardColor: lightgrey;
       }
 }
 
+@keyframes moveDown { 
+    0% {position: relative; bottom: 65px}
+    100% {position: relative; bottom: 0px}
+}
+
+@keyframes slideIn{
+    0%{position: relative; right: 300px}
+    100%{position: relative; right: 0px}
+}
+
 .navBar{
     position: fixed;
     z-index: 10;
@@ -33,6 +43,16 @@ $cardColor: lightgrey;
 .home{
     background-color: white;
     padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .servicesButton{
+        cursor: pointer
+    }
+    .title{
+        animation-name: moveDown;
+        animation-duration: 2s;
+    }
     a:visited{
         color: black;
     }
@@ -41,11 +61,14 @@ $cardColor: lightgrey;
 .genre{
     background-color: white;
     padding-top: 60px;
+    display: flex;
     .genreList{
         padding: 10px;
         width: 200px;
         margin-top: 10px;
         cursor: pointer;
+        animation-name: slideIn;
+        animation-duration: 1s;
         border: thin black solid;
         &:hover{
             background-color: black;

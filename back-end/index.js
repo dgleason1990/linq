@@ -14,7 +14,7 @@ app.use(express.static('public', {
 }));
 
 app.post('/businesses', (req,res)=>{
-    console.log(req.body.businessType);
+    console.log(req.body);
     // will have to search req.body.businessType to find data stored in database
     console.log(examples)
     res.json(examples)
@@ -23,6 +23,11 @@ app.post('/businesses', (req,res)=>{
 app.post('/company', (req,res)=>{
     console.log(req.body.companyName);
     res.json(companyExample)
+})
+
+app.post('/location',(req,res)=>{
+  console.log(req)
+  res.json(examples)
 })
 
 app.post('/booking', (req,res)=>{

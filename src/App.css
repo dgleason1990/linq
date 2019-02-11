@@ -50,6 +50,50 @@
   }
 }
 
+@-webkit-keyframes moveDown {
+  0% {
+    position: relative;
+    bottom: 65px;
+  }
+  100% {
+    position: relative;
+    bottom: 0px;
+  }
+}
+
+@keyframes moveDown {
+  0% {
+    position: relative;
+    bottom: 65px;
+  }
+  100% {
+    position: relative;
+    bottom: 0px;
+  }
+}
+
+@-webkit-keyframes slideIn {
+  0% {
+    position: relative;
+    right: 300px;
+  }
+  100% {
+    position: relative;
+    right: 0px;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    position: relative;
+    right: 300px;
+  }
+  100% {
+    position: relative;
+    right: 0px;
+  }
+}
+
 .navBar {
   position: fixed;
   z-index: 10;
@@ -77,6 +121,27 @@
 .home {
   background-color: white;
   padding-top: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.home .servicesButton {
+  cursor: pointer;
+}
+
+.home .title {
+  -webkit-animation-name: moveDown;
+          animation-name: moveDown;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
 }
 
 .home a:visited {
@@ -86,6 +151,9 @@
 .genre {
   background-color: white;
   padding-top: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .genre .genreList {
@@ -93,6 +161,10 @@
   width: 200px;
   margin-top: 10px;
   cursor: pointer;
+  -webkit-animation-name: slideIn;
+          animation-name: slideIn;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
   border: thin black solid;
 }
 

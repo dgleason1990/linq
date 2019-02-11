@@ -7,7 +7,7 @@ module.exports = {
     employee:[{
         name: 'David',
         rating: 5,
-        img: 'https://david-gleasons-portfolio.herokuapp.com/Assets/profilePicture.jpg'
+        img: 'https://david-gleasons-portfolio.herokuapp.com/Assets/profilePicture.jpg',
     },{
         name: 'Winta',
         rating: 4,

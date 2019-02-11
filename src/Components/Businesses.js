@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Business extends Component {
+export default class Businesses extends Component {
     state={
         businessType: this.props.match.params.id,
         business:[]
