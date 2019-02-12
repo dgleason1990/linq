@@ -5,6 +5,7 @@ const cors = require('cors');
 const examples = require('./examples');
 const companyExample = require('./companyExample');
 const nodemailer = require('nodemailer');
+const geolocation = require('./headers')
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -25,8 +26,13 @@ app.post('/company', (req,res)=>{
     res.json(companyExample)
 })
 
-app.post('/location',(req,res)=>{
-  console.log(req)
+app.post('/location',async (req,res)=>{
+  let clientLocation = req.body.address + '' + req.body.city + '' + req.body.province
+  let clientCoordinates;
+  await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + clientLocation + '&key=' + geolocation)
+  .then(res=>res.json())
+  .then(data => {clientCoordinates = data});
+  
   res.json(examples)
 })
 

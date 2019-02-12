@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 class Modal extends Component {
     state={
-        address:''
+        city:'',
+        province: '',
+        address: ''
     }
 
     onSubmit = async (e)=>{
@@ -26,6 +28,10 @@ class Modal extends Component {
                     <div className='modalClose' onClick={this.props.handleClose}>✖️</div>
                     <h1>Where are you located?</h1>
                     <form className="submissionForm">
+                        <div>City: </div>
+                        <input onChange={ (e)=> this.setState({ city: e.target.value })}/> 
+                        <div>Province: </div>
+                        <input onChange={ (e)=> this.setState({ province: e.target.value })}/> 
                         <div>Address: </div>
                         <input onChange={ (e)=> this.setState({ address: e.target.value })}/> 
                         <div className='handleSubmission'onClick={this.onSubmit}> Submit Request </div>
