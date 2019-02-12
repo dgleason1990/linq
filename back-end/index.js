@@ -5,7 +5,11 @@ const cors = require('cors');
 const examples = require('./examples');
 const companyExample = require('./companyExample');
 const nodemailer = require('nodemailer');
-const geolocation = require('./headers')
+const {geolocation} = require('./headers');
+const sequelize = require('sequelize');
+const axios = require('axios');
+const Sequelize = require('sequelize');
+const db = require('./config/index')
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -21,18 +25,21 @@ app.post('/businesses', (req,res)=>{
     res.json(examples)
 })
 
+// Testing Connection
+// db.authenticate()
+// .then(
+//   console.log('database connected'))
+//   .catch(err=>console.log(err))
+
 app.post('/company', (req,res)=>{
     console.log(req.body.companyName);
     res.json(companyExample)
 })
 
 app.post('/location',async (req,res)=>{
-  let clientLocation = req.body.address + '' + req.body.city + '' + req.body.province
-  let clientCoordinates;
-  await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + clientLocation + '&key=' + geolocation)
-  .then(res=>res.json())
-  .then(data => {clientCoordinates = data});
-  
+  let clientAddress = req.body.address + ' ' + req.body.city + ' ' + req.body.province;
+  let result = await axios('https://maps.googleapis.com/maps/api/geocode/json?address=' + clientAddress + '&key=' + geolocation);
+  let clientLocation = result.data.results[0].geometry.location;
   res.json(examples)
 })
 
