@@ -13,13 +13,13 @@ class App extends Component {
       <Router>
         <div className="App">
           <Nav/>
-            <Switch>
-              <Route exact path='/' render={()=> <Redirect to='/home'/> }/>
-              <Route path='/home' component={Home} />
-              <Route exact path='/Genre' component={Genre} />
-              <Route exact path='/Genre/:id' component={Businesses} />
-              <Route exact path='/Genre/:id/:id' component={Company} />
-            </Switch>
+          <Switch>
+            <Route exact path='/' render={ ()=> <Redirect to='/home'/> }/>
+            <Route path='/home' component={Home} />
+            <Route exact path='/Genre' component={Genre} />
+            <Route exact path='/Genre/:id' component={Businesses} />
+            <Route exact path='/Genre/:id/:id' component={Company} />
+          </Switch>
         </div>
       </Router>
     );

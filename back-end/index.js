@@ -6,7 +6,6 @@ const examples = require('./examples');
 const companyExample = require('./companyExample');
 const nodemailer = require('nodemailer');
 const {geolocation} = require('./headers');
-const sequelize = require('sequelize');
 const axios = require('axios');
 const Sequelize = require('sequelize');
 const db = require('./config/index')
@@ -17,6 +16,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public', {
     setHeaders: function(res, path) { res.set("Cache-Control", "no-cache"); }
 }));
+
+const sequelize = new Sequelize('linq','root', 'root',
+  {
+      "host": "localhost",
+      "dialect": "mysql",
+      "dialectOptions": {
+              "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"
+      },
+      define: {
+          underscored: true
+      }
+});
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 app.post('/businesses', (req,res)=>{
     console.log(req.body);

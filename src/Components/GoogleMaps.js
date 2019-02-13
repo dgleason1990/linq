@@ -16,7 +16,6 @@ export class GoogleMaps extends Component {
         },
         showingInfoWindow: false
       };
-
     async componentDidMount(){
         await this.setState({
             selectedPlace: {

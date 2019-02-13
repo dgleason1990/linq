@@ -5,6 +5,7 @@ $cardColor: lightgrey;
     50%{position: relative; top: 5px};
     100%{position: relative; top:0px}
 }
+
 @keyframes spinny {
     from {
         transform: rotate(0deg);

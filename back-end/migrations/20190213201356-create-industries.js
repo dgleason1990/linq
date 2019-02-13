@@ -2,7 +2,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Industries', {
-      industry_id: {
+      industryId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -13,11 +13,13 @@ module.exports = {
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW")
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('NOW')
       }
     });
   },

@@ -1,18 +1,20 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Company = sequelize.define('Companies', {
-    compnay_id: DataTypes.INTEGER,
+    companyId: DataTypes.INTEGER,
     businessName: DataTypes.STRING,
     img: DataTypes.STRING,
     address: DataTypes.STRING,
+    summary: DataTypes.TEXT,
     latitude: DataTypes.INTEGER,
     longitude: DataTypes.INTEGER,
-    industry_id: DataTypes.INTEGER
+    industryId: DataTypes.INTEGER
   }, {
     underscored: true,
   });
   Company.associate = function(models) {
-    // associations can be defined here
+    Company.belongsTo(models.Industries,{foreignKey: industryId});
+    Company.hasMany(models.Employees);
   };
-  return User;
+  return Company;
 };

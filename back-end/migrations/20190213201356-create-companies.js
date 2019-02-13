@@ -2,7 +2,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Companies', {
-      company_id: {
+      companyId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -17,29 +17,31 @@ module.exports = {
       address:{
         type: Sequelize.STRING
       },
-      latitude: {
+      summary:{
+        type: Sequelize.TEXT
+      },
+      latitude:{
         type: Sequelize.INTEGER
       },
       longitude:{
         type: Sequelize.INTEGER
-      }, 
-      industry_id: {
-        type: Sequelize.INTEGER,
-        foreignKey: 'industry_id',
-        allowNull: false,
-        references: {model: 'Industries', key: 'industry_id'}
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW")
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('NOW')
+      },
+      industryId:{
+        type: Sequelize.INTEGER
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('companies');
+    return queryInterface.dropTable('Industries');
   }
 };
