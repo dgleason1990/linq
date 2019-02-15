@@ -6,8 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     img: DataTypes.STRING,
     address: DataTypes.STRING,
     summary: DataTypes.TEXT,
-    latitude: DataTypes.INTEGER,
-    longitude: DataTypes.INTEGER,
+    point: DataTypes.GEOMETRY('POINT'),
     industryId: DataTypes.INTEGER
   }, {
     underscored: true,

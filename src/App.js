@@ -8,6 +8,17 @@ import Businesses from './Components/Businesses';
 import Company from './Components/Company';
 
 class App extends Component {
+  state={
+    clientLocation:''
+  }
+  
+  clientLocator= (data)=>{
+    this.setState({
+      clientLocation: data
+    })
+    console.log(this.state.clientLocation)
+  }
+
   render() {
     return (
       <Router>
@@ -15,8 +26,8 @@ class App extends Component {
           <Nav/>
           <Switch>
             <Route exact path='/' render={ ()=> <Redirect to='/home'/> }/>
-            <Route path='/home' component={Home} />
-            <Route exact path='/Genre' component={Genre} />
+            <Route path='/home' render={()=>{ return <Home clientLocator={this.clientLocator} />}}/>
+            <Route exact path='/Genre' render={()=>{ return <Genre clientLocation={this.state.clientLocation} />}}/>
             <Route exact path='/Genre/:id' component={Businesses} />
             <Route exact path='/Genre/:id/:id' component={Company} />
           </Switch>

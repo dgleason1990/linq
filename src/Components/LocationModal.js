@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
 
 class Modal extends Component {
     state={
         city:'',
         province: '',
-        address: ''
+        address: '',
+        clientLocation:''
     }
 
     onSubmit = async (e)=>{
@@ -18,8 +20,10 @@ class Modal extends Component {
                 "content-type": "application/json"
             }
         }
-        fetch('http://localhost:8080/location',init)
+        await fetch('http://localhost:8080/clientlocation',init)
         .then(res=>res.json())
+        .then(data => this.props.clientLocator(data));
+        this.props.history.push('/Genre')
     }
     render() {
         return (
@@ -47,7 +51,7 @@ Modal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
 };
 
-export default Modal;
+export default withRouter(Modal);
 
 const flex = {
     padding: '25px',

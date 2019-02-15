@@ -220,6 +220,10 @@
   color: white;
 }
 
+.googleMarker {
+  background-color: blue;
+}
+
 .company {
   background-color: white;
   padding-top: 60px;

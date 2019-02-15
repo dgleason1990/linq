@@ -20,11 +20,9 @@ module.exports = {
       summary:{
         type: Sequelize.TEXT
       },
-      latitude:{
-        type: Sequelize.INTEGER
-      },
-      longitude:{
-        type: Sequelize.INTEGER
+      point: {
+        type: Sequelize.GEOMETRY('POINT'),
+        allowNull: false
       },
       created_at: {
         allowNull: false,

@@ -27,7 +27,7 @@ export class GoogleMaps extends Component {
             }
         })
     }
-    onMarkerClick = async (props, marker) =>{
+    onMouseoverMarker = async (props, marker) =>{
         await this.setState({
           activeMarker: marker,
           selectedPlace: props,
@@ -49,16 +49,17 @@ export class GoogleMaps extends Component {
   render() {
     let  genreData = (data) =>{ 
         return (
-          <Marker onClick={this.onMarkerClick}
+          <Marker onMouseover={this.onMouseoverMarker}
             data={data}
             position={{ lat: data.location.coordinates[0].$numberDecimal, lng: data.location.coordinates[1].$numberDecimal}}/>
             )};
-    let center = { lat: 43.6532,
-            lng: -79.3832 }
+    let center = { lat: this.props.clientLocation.lat,
+            lng: this.props.clientLocation.lng}
     return (
       <div>
         <Map google={this.props.google} containerStyle={{height:'80%', width:'80%'}} zoom={13} center={center}>
             {this.props.genreInfo.map((data) => genreData(data))}
+            <Marker position={center} className='googleMarker' name={'Your Location'}/>
             <InfoWindow
             marker={this.state.activeMarker}
             onClose={this.onInfoWindowClose}

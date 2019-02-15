@@ -45,21 +45,20 @@ app.post('/businesses', (req,res)=>{
     res.json(examples)
 })
 
-// Testing Connection
-// db.authenticate()
-// .then(
-//   console.log('database connected'))
-//   .catch(err=>console.log(err))
-
 app.post('/company', (req,res)=>{
     console.log(req.body.companyName);
     res.json(companyExample)
 })
 
-app.post('/location',async (req,res)=>{
+app.post('/clientlocation', async (req,res)=>{
   let clientAddress = req.body.address + ' ' + req.body.city + ' ' + req.body.province;
   let result = await axios('https://maps.googleapis.com/maps/api/geocode/json?address=' + clientAddress + '&key=' + geolocation);
   let clientLocation = result.data.results[0].geometry.location;
+  res.json(clientLocation)
+})
+
+app.post('/location', (req,res)=>{
+  console.log(req.body)
   res.json(examples)
 })
 

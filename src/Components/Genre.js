@@ -4,6 +4,7 @@ import GoogleMaps from './GoogleMaps';
 
 export default class Genre extends Component {
   state={
+    clientLocation: this.props.clientLocation,
     genre:['Eyebrows','Massage Therapist', 'Wax', 'Eyelashes','Hair','Facials','Makeup'],
     genreSelected:'',
     genreInfo:[{
@@ -21,6 +22,7 @@ export default class Genre extends Component {
       }
     }],
   }
+
   render() {
       let displayGenre2 = this.state.genre.map(arr=>{
         return( 
@@ -50,7 +52,7 @@ export default class Genre extends Component {
         <div>
           { displayGenre2 }
         </div>
-        <GoogleMaps genreInfo={this.state.genreInfo} genreSelected={this.state.genreSelected}/>
+        <GoogleMaps genreInfo={this.state.genreInfo} clientLocation={this.state.clientLocation} genreSelected={this.state.genreSelected}/>
       </div>
     )
   }
