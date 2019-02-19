@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Employee = sequelize.define('Employee', {
+  const Employees = sequelize.define('Employees', {
     employeeId: DataTypes.INTEGER,
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     underscored: true,
   });
-  Employee.associate = function(models) {
-    Employee.belongsTo(models.Companies, {foreignKey: companyId});
-    Employee.hasMany(models.Services)
+  Employees.associate = function(models) {
+    Employees.belongsTo(models.Companies, {foreignKey: 'companyId'});
+    Employees.hasMany(models.Services);
   };
-  return Employee;
+  return Employees;
 };

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
   });
   Services.associate = function(models) {
-    Services.belongsTo(models.Employees, {foreignKey: employeeId})
+    Services.belongsTo(models.Employees, {foreignKey: 'employeeId'})
   };
   return Services;
 };

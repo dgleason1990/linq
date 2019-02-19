@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Company = sequelize.define('Companies', {
+  const Companies = sequelize.define('Companies', {
     companyId: DataTypes.INTEGER,
     businessName: DataTypes.STRING,
     img: DataTypes.STRING,
@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     underscored: true,
   });
-  Company.associate = function(models) {
-    Company.belongsTo(models.Industries,{foreignKey: industryId});
-    Company.hasMany(models.Employees);
+  Companies.associate = function(models) {
+    Companies.belongsTo(models.Industries, {foreignKey: 'industriesId'});
+    Companies.hasMany(models.Employees);
   };
-  return Company;
+  return Companies;
 };

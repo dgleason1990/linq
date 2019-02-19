@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Datetime from 'react-datetime';
+import {withRouter} from 'react-router-dom';
 
 class Modal extends Component {
     state = {
@@ -10,7 +11,8 @@ class Modal extends Component {
         },
         employeeName:'',
         clientName: '',
-        booking: ''
+        booking: '',
+        clientPhone: ''
     }
 
     onSubmit = async (e)=>{
@@ -27,12 +29,14 @@ class Modal extends Component {
             }
         }
         fetch('http://localhost:8080/booking',init)
-        .then(res=>res.json())
+        .then(res=>res.json());
+        this.props.handleClose();
+        this.props.history.push('/Booked')
     }
     render() {
-        let createSelectList = this.props.employeeInfo.map(arr=>{
-            return <option value={ arr.name } > { arr.name } </option>
-        })
+        // let createSelectList = this.props.employeeInfo.map(arr=>{
+        //     return <option value={ arr.name } > { arr.name } </option>
+        // })
 
         let createServiceList = this.props.services.map(arr=>{
             return <option value={ arr } > { arr } </option>
@@ -49,20 +53,22 @@ class Modal extends Component {
                     <div className='modalClose' onClick={this.props.handleClose}>✖️</div>
                     <h1>Request an appointment</h1>
                     <form className="submissionForm">
-                        <div className="employeeTitle"> 
+                        {/* <div className="employeeTitle"> 
                             <p> Choose your employee </p>
                             <select onChange= { (e) => this.setState({ employeeName: e.target.value })}>
                                 { createSelectList }
                             </select>
-                        </div>
-                        <div className=''>
+                        </div> */}
+                        <div>
                             <p> Choose your service </p>
                             <select onChange= { (e) => this.setState({ service: e.target.value })}>
                                 { createServiceList }
                             </select>
                         </div>
-                        <div>Your Name </div>
+                        <div> Your Name </div>
                         <input onChange={ (e)=> this.setState({ clientName: e.target.value })}/> 
+                        <div> Your Phone Number </div>
+                        <input onChange={ (e)=> this.setState({ clientPhone: e.target.value })}/> 
                         <div> Select a preferred date and time </div>
                         <Datetime 
                             timeConstraints = {{
@@ -91,7 +97,7 @@ Modal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
 };
 
-export default Modal;
+export default withRouter(Modal);
 
 const flex = {
     padding: '25px',

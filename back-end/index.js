@@ -8,7 +8,7 @@ const nodemailer = require('nodemailer');
 const {geolocation} = require('./headers');
 const axios = require('axios');
 const Sequelize = require('sequelize');
-const db = require('./config/index')
+const db = require('./models')
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -39,10 +39,16 @@ sequelize
   });
 
 app.post('/businesses', (req,res)=>{
-    console.log(req.body);
-    // will have to search req.body.businessType to find data stored in database
-    console.log(examples)
-    res.json(examples)
+  console.log(req.body.genre)
+  console.log(db.Industries)
+  let industry = req.body.genre;
+  // db.Industries.findAll({
+	// 	// where: { 
+  //   //   industry: 'Eyebrows'
+  //   // }
+  // })
+  // .then(data=>console.log(data));
+  res.json(examples)
 })
 
 app.post('/company', (req,res)=>{
@@ -55,7 +61,7 @@ app.post('/clientlocation', async (req,res)=>{
   let result = await axios('https://maps.googleapis.com/maps/api/geocode/json?address=' + clientAddress + '&key=' + geolocation);
   let clientLocation = result.data.results[0].geometry.location;
   res.json(clientLocation)
-})
+});
 
 app.post('/location', (req,res)=>{
   console.log(req.body)

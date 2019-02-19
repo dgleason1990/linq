@@ -173,6 +173,29 @@
   color: white;
 }
 
+.googleMaps .googleInfo {
+  background-color: white;
+  -webkit-box-shadow: 1px 1px black;
+          box-shadow: 1px 1px black;
+  position: absolute;
+  z-index: 10;
+  width: 15%;
+  height: 80%;
+  overflow-y: scroll;
+}
+
+.googleMaps .googleInfo img {
+  width: 100%;
+}
+
+.googleMaps .googleInfo .summaryToggle {
+  cursor: pointer;
+}
+
+.googleMaps .googleInfo .bookNow {
+  cursor: pointer;
+}
+
 .businesses {
   background-color: white;
   padding-top: 60px;
@@ -220,10 +243,6 @@
   color: white;
 }
 
-.googleMarker {
-  background-color: blue;
-}
-
 .company {
   background-color: white;
   padding-top: 60px;
@@ -262,6 +281,21 @@
   padding: 10px;
   margin: 10px;
   background-color: lightgrey;
+}
+
+.booked {
+  background-color: white;
+  padding-top: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #form-container {

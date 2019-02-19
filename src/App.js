@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Genre from './Components/Genre';
 import Businesses from './Components/Businesses';
 import Company from './Components/Company';
+import Booked from './Components/Booked';
 
 class App extends Component {
   state={
@@ -30,6 +31,7 @@ class App extends Component {
             <Route exact path='/Genre' render={()=>{ return <Genre clientLocation={this.state.clientLocation} />}}/>
             <Route exact path='/Genre/:id' component={Businesses} />
             <Route exact path='/Genre/:id/:id' component={Company} />
+            <Route path='/Booked' component={Booked} />
           </Switch>
         </div>
       </Router>

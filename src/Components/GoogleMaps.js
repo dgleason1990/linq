@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {KmlLayer, Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import ReactDOM from 'react-dom';
 import {apiKey} from '../Headers';
 import {withRouter} from 'react-router-dom';
+import SideBar from './SideBar';
 
 export class GoogleMaps extends Component {
     state = {
@@ -13,6 +14,12 @@ export class GoogleMaps extends Component {
             img: '',
             _id: ''
           }
+        },
+        sideBar:{
+          isLoaded: false,
+          businessName:'No place selected',
+          img: '',
+          _id: ''
         },
         showingInfoWindow: false
       };
@@ -34,14 +41,26 @@ export class GoogleMaps extends Component {
           showingInfoWindow: true
         })};
 
-    onInfoWindowClose = () =>
-    this.setState({
-    activeMarker: null,
-    showingInfoWindow: false
-    });
+    // onInfoWindowClose = () =>
+    // this.setState({
+    // activeMarker: null,
+    // showingInfoWindow: false
+    // });
   
-    onInfoWindowOpen() {
-        const button = (<button onClick={e => {this.props.history.push(this.props.history.push('/Genre/' + this.props.genreSelected + '/' + this.state.selectedPlace.data.businessName.split(' ').join('')))}}> Select your Stylist </button>
+    // onInfoWindowOpen() {
+    //     const button = (<button onClick={e => {this.props.history.push(this.props.history.push('/Genre/' + this.props.genreSelected + '/' + this.state.selectedPlace.data.businessName.split(' ').join('')))}}> Select your Stylist </button>
+    //   );
+    //     ReactDOM.render(React.Children.only(button), document.getElementById("iwc"));
+    //   }
+
+      onInfoWindowOpen() {
+        const button = (<button onClick={ async () => { await this.setState({
+          sideBar:{
+            isLoaded: true,
+            businessName: this.state.selectedPlace.data.businessName.split(' ').join(''),
+            img: this.state.selectedPlace.data.img
+          }
+        }); console.log(this.state)}}> Book your appointment </button>
       );
         ReactDOM.render(React.Children.only(button), document.getElementById("iwc"));
       }
@@ -53,16 +72,34 @@ export class GoogleMaps extends Component {
             data={data}
             position={{ lat: data.location.coordinates[0].$numberDecimal, lng: data.location.coordinates[1].$numberDecimal}}/>
             )};
+
     let center = { lat: this.props.clientLocation.lat,
             lng: this.props.clientLocation.lng}
+
+    let icon = {url: './Assets/currentLocation.svg',scaledSize: new window.google.maps.Size(30,30)}
+
+    let displaySidebar = () =>{
+      if(this.state.sideBar.isLoaded === true){
+        return <SideBar companyInfo={this.state.sideBar}/>
+      } else {
+        return <div className='googleInfo'>
+            <img src={this.state.img}/>
+            <h1> {this.state.businessName} </h1>
+          </div>
+      }
+    }
     return (
-      <div>
-        <Map google={this.props.google} containerStyle={{height:'80%', width:'80%'}} zoom={13} center={center}>
+      <div className='googleMaps'>
+        {displaySidebar()}
+        {/* <div className='googleInfo'> 
+          <img src={this.state.sideBar.img}/>
+          <h1> {this.state.sideBar.businessName}</h1>
+        </div> */}
+        <Map mapTypeControl={false} google={this.props.google} containerStyle={{height:'80%', width:'80%'}} zoom={13} center={center}>
             {this.props.genreInfo.map((data) => genreData(data))}
-            <Marker position={center} className='googleMarker' name={'Your Location'}/>
+            <Marker position={center} icon={icon} name={'Your Location'}/>
             <InfoWindow
             marker={this.state.activeMarker}
-            onClose={this.onInfoWindowClose}
             visible={this.state.showingInfoWindow}
             onOpen={e => {
             this.onInfoWindowOpen(this.props, e);
@@ -70,7 +107,6 @@ export class GoogleMaps extends Component {
             <div className='businessCard'>
                 <h1> {this.state.selectedPlace.data.name} </h1>
                 <img src={this.state.selectedPlace.data.img} style={{width:'20vw'}}/>
-                <h2> Rating: {this.state.selectedPlace.data.rating} </h2>
                 <div id="iwc" />
             </div>
             </InfoWindow>

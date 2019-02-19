@@ -1,13 +1,13 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Industry = sequelize.define('Industries', {
+  const Industries = sequelize.define('Industries', {
     industryId: DataTypes.INTEGER,
     industry: DataTypes.STRING
   }, {
     underscored: true,
   });
-  Industry.associate = function(models) {
-    Industry.hasMany(models.Companies)
+  Industries.associate = function(models) {
+    Industries.hasMany(models.Companies,{foreignKey: 'industryId'})
   };
-  return Industry;
+  return Industries;
 };
