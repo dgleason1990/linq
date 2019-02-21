@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-      return queryInterface.bulkInsert('Employee', [{
+      return queryInterface.bulkInsert('Employees', [{
         firstName: 'David',
         lastName: 'Gleason',
         img: 'https://david-gleasons-portfolio.herokuapp.com/Assets/profilePicture.jpg',
@@ -24,6 +24,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-      return queryInterface.bulkDelete('Employee', null, {});
+      return queryInterface.bulkDelete('Employees', null, {});
   }
 };

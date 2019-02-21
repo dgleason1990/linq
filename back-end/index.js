@@ -32,7 +32,7 @@ const sequelize = new Sequelize('linq','root', 'root',
 sequelize
   .authenticate()
   .then(() => {
-    console.log('Connection has been established successfully.');
+    console.log('Database connection has been established successfully.');
   })
   .catch(err => {
     console.error('Unable to connect to the database:', err);
@@ -40,14 +40,14 @@ sequelize
 
 app.post('/businesses', (req,res)=>{
   console.log(req.body.genre)
-  console.log(db.Industries)
+  console.log(db.Industry)
   let industry = req.body.genre;
-  // db.Industries.findAll({
-	// 	// where: { 
-  //   //   industry: 'Eyebrows'
-  //   // }
-  // })
-  // .then(data=>console.log(data));
+  db.Industry.findAll({
+		where: { 
+      industry: 'Eyebrows'
+    }
+  })
+  .then(data=>console.log(data));
   res.json(examples)
 })
 
@@ -98,5 +98,5 @@ app.post('/booking', (req,res)=>{
   })
 
 app.listen(8080, () => {
-    console.log('you are connected to port 8080')
+    console.log('You are connected to port 8080')
 })

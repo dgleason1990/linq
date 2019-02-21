@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Employee', {
+    return queryInterface.createTable('Employees', {
       employeeId: {
         allowNull: false,
         autoIncrement: true,
@@ -30,12 +30,18 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn('NOW')
       },
-      companyId:{
-          type: Sequelize.INTEGER
+      companyId: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          foreignKey: true,
+          references: {
+            model: 'Companies',
+            key: 'companyId'
+          }
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Employee');
+    return queryInterface.dropTable('Employees');
   }
 };

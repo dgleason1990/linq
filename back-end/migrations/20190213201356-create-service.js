@@ -32,7 +32,13 @@ module.exports = {
         defaultValue: Sequelize.fn('NOW')
       },
       employeeId:{
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        foreignKey: true,
+        references: {
+          model: 'Employees',
+          key: 'employeeId'
+        }
       }
     });
   },

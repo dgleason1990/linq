@@ -35,11 +35,17 @@ module.exports = {
         defaultValue: Sequelize.fn('NOW')
       },
       industryId:{
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        foreignKey: true,
+        references: {
+          model: 'Industries',
+          key: 'industryId'
+        }
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Industries');
+    return queryInterface.dropTable('Companies');
   }
 };
