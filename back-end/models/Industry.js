@@ -1,13 +1,19 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Industry = sequelize.define('Industry', {
-    // industryId: DataTypes.INTEGER,
+    id:{
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false
+    },
     industry: DataTypes.STRING
-  }, {
-    underscored: true,
   });
   Industry.associate = function(models) {
-    Industry.hasMany(models.Company, {foreignKey: 'industryId'})
+    Industry.hasMany(models.Company, {
+      foreignKey: 'industryId', 
+      onDelete: 'CASCADE'
+    })
   };
   return Industry;
 };

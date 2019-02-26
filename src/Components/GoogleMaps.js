@@ -34,6 +34,7 @@ export class GoogleMaps extends Component {
             }
         })
     }
+    
     onMouseoverMarker = async (props, marker) =>{
         await this.setState({
           activeMarker: marker,

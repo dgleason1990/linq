@@ -2,11 +2,11 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Companies', {
-      companyId: {
+      id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
       },
       businessName: {
         type: Sequelize.STRING
@@ -35,14 +35,15 @@ module.exports = {
         defaultValue: Sequelize.fn('NOW')
       },
       industryId:{
-        type: Sequelize.INTEGER,
         allowNull: false,
+        type: Sequelize.INTEGER,
         foreignKey: true,
+        onDelete: 'CASCADE',
         references: {
-          model: 'Industries',
-          key: 'industryId'
-        }
-      }
+              model: 'Industries',
+              key: 'id'
+            }
+          }
     });
   },
   down: (queryInterface, Sequelize) => {

@@ -38,18 +38,18 @@ sequelize
     console.error('Unable to connect to the database:', err);
   });
 
-app.post('/businesses', (req,res)=>{
-  console.log(req.body.genre)
-  console.log(db.Industry)
-  let industry = req.body.genre;
-  db.Industry.findAll({
-		where: { 
-      industry: 'Eyebrows'
-    }
-  })
-  .then(data=>console.log(data));
-  res.json(examples)
-})
+// app.post('/businesses', (req,res)=>{
+//   console.log(req.body.genre)
+//   console.log(db.Industry)
+//   let industry = req.body.genre;
+//   db.Industry.findAll({
+// 		where: { 
+//       industry: 'Eyebrows'
+//     }
+//   })
+//   .then(data=>console.log(data));
+//   res.json(examples)
+// })
 
 app.post('/company', (req,res)=>{
     console.log(req.body.companyName);
