@@ -25,6 +25,7 @@ const sequelize = new Sequelize('linq','root', 'root',
               "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"
       },
       define: {
+          timestamps: false,
           underscored: true
       }
 });
@@ -38,18 +39,28 @@ sequelize
     console.error('Unable to connect to the database:', err);
   });
 
-// app.post('/businesses', (req,res)=>{
-//   console.log(req.body.genre)
-//   console.log(db.Industry)
-//   let industry = req.body.genre;
-//   db.Industry.findAll({
-// 		where: { 
-//       industry: 'Eyebrows'
-//     }
-//   })
-//   .then(data=>console.log(data));
-//   res.json(examples)
-// })
+app.post('/businesses', async (req,res) => {
+  let industryId;
+  console.log(req.body)
+  await db.Industry.findAll({
+    where:{
+      industry: req.body.genre
+    }
+  })
+  .then( data => {
+    industryId = data[0].dataValues.id;
+    })
+  db.Company.findAll({
+    where:{
+      industryId: industryId
+    }
+  })
+  .then( data => {
+    companyArr = [];
+    data.forEach( company => companyArr.push(company.dataValues));
+    res.json(companyArr)
+  })
+})
 
 app.post('/company', (req,res)=>{
     console.log(req.body.companyName);

@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     industry: DataTypes.STRING
-  });
+    },{
+      timestamps: false
+    });
   Industry.associate = function(models) {
     Industry.hasMany(models.Company, {
       foreignKey: 'industryId', 

@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     lastName: DataTypes.STRING,
     img: DataTypes.STRING,
     bio: DataTypes.TEXT,
+  },{
+    timestamps: false
   });
   Employee.associate = function(models) {
     Employee.belongsTo(models.Company, {

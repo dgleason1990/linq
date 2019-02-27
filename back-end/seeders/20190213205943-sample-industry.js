@@ -17,7 +17,7 @@ module.exports = {
 
     const industryRow = industries[0]
 
-    return  queryInterface.bulkInsert('Companies', [{
+    await  queryInterface.bulkInsert('Companies', [{
       businessName: 'Fuzz Wax Bar',
       img: 'https://s3-media2.fl.yelpcdn.com/bphoto/unC7PeI434pdvFjneCRYfg/ls.jpg',
       address: '701 Queen St W',
@@ -39,9 +39,62 @@ module.exports = {
       point: Sequelize.fn('GeomFromText', 'POINT(43.654834 -79.387331)'),
       industryId: industryRow[0].id
     }], {});
+
+    const companies = await queryInterface.sequelize.query(
+      `SELECT id from COMPANIES;`
+    );
+
+    const companyRow = companies[0];
+
+    await queryInterface.bulkInsert('Employees', [{
+              firstName: 'David',
+              lastName: 'Gleason',
+              img: 'https://david-gleasons-portfolio.herokuapp.com/Assets/profilePicture.jpg',
+              bio: 'Hi my name is David! I like beauty stuff',
+              companyId: companyRow[0].id
+            },{
+              firstName: 'Megan',
+              lastName: 'Markle',
+              img: 'https://timedotcom.files.wordpress.com/2018/12/square-meghan-markle-person-of-the-year-2018.jpg?quality=85',
+              bio: 'Hi my name Megan! I am a princess, but on my downtime I like to do eyebrow stuff',
+              companyId: companyRow[0].id
+            },{
+              firstName: 'Kate',
+              lastName:'Middleton',
+              img:'https://www.hellomagazine.com/imagenes/royalty/2019021167798/see-kate-middleton-thank-you-card/0-319-464/kate-middleton-baftas-t.jpg',
+              bio: "Hi I'm Kate and I am going to be the queen. I also like eyebrows",
+              companyId: companyRow[0].id
+            }], {});
+
+    const employees = await queryInterface.sequelize.query(
+      `SELECT id from EMPLOYEES;`
+    );
+
+    const employeeRow = employees[0];
+    
+    return queryInterface.bulkInsert('Services', [{
+              service: 'Microblading',
+              description: 'We will microblade your eyebrows',
+              price: 45.00,
+              time: 25,
+              employeeId: employeeRow[0].id
+            },{
+              service: 'Waxing',
+              description: 'Wax your eyebrows with organic wax',
+              price: 89.99,
+              time: 60,
+              employeeId: employeeRow[0].id
+            },{
+              service: 'Cutting',
+              price: 10,
+              time: 20,
+              employeeId: employeeRow[0].id
+            }], {});
+
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete('Industries');
-    await queryInterface.bulkDelete('Companies')
+    await queryInterface.bulkDelete('Companies');
+    await queryInterface.bulkDelete('Employees')
   }
 };

@@ -27,10 +27,10 @@ export default class Businesses extends Component {
         this.state.business.map(arr=>{
             return( 
             <div className='companyDisplay'>
-                <img src={arr.img} />
-                <h1> {arr.businessName} </h1>
+                <img src={arr.dataValues.img} />
+                <h1> {arr.dataValues.businessName} </h1>
                 <div onClick={()=>{ this.props.history.push('/Genre/'+this.state.businessType+'/'+arr.businessName.split(' ').join(''))} }> Visit Company Site </div>
-                <h2> {arr.address} </h2>
+                <h2> {arr.dataValues.address} </h2>
             </div>
         )})
     return (

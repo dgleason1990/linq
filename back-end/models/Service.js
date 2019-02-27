@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     price: DataTypes.INTEGER,
     time: DataTypes.INTEGER,
-  }, {
+  },{
+    timstamp: false,
     underscored: true,
   });
   Service.associate = function(models) {

@@ -379,4 +379,21 @@
   -webkit-animation-duration: 0.5s;
           animation-duration: 0.5s;
 }
+
+.googleInfo .bookNow {
+  padding: 10px;
+  border: thin solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 150px;
+}
+
+.googleInfo .bookNow:hover {
+  background-color: black;
+  color: white;
+}
 /*# sourceMappingURL=App.css.map */

@@ -12,13 +12,8 @@ export default class Genre extends Component {
       businessName:'',
       img: '',
       id:'',
-      location: {
-        coordinates:[{
-          $numberDecimal: 40.7128
-        },
-        {
-          $numberDecimal: 74.0060
-        }]
+      point: {
+        coordinates:[ 40.7128, 74.0060 ]
       }
     }],
   }
@@ -37,10 +32,10 @@ export default class Genre extends Component {
           }
         await fetch('http://localhost:8080/businesses', init)
         .then( res => res.json())
-        .then( data => this.setState({
+        .then( data => {this.setState({
                 genreSelected: genre, 
                 genreInfo: data
-            })
+            })}
         )
         .catch( err => console.log(err) )
           }}>

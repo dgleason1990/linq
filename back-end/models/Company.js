@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     img: DataTypes.STRING,
     address: DataTypes.STRING,
     summary: DataTypes.TEXT,
-    point: DataTypes.GEOMETRY('POINT')
+    point: DataTypes.GEOMETRY('POINT'),
+  },{
+    timestamps: false
   });
   Company.associate = function(models) {
     Company.belongsTo(models.Industry, {

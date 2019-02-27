@@ -35,24 +35,12 @@ export class GoogleMaps extends Component {
         })
     }
     
-    onMouseoverMarker = async (props, marker) =>{
+    onMarkerClick = async (props, marker) =>{
         await this.setState({
           activeMarker: marker,
           selectedPlace: props,
           showingInfoWindow: true
         })};
-
-    // onInfoWindowClose = () =>
-    // this.setState({
-    // activeMarker: null,
-    // showingInfoWindow: false
-    // });
-  
-    // onInfoWindowOpen() {
-    //     const button = (<button onClick={e => {this.props.history.push(this.props.history.push('/Genre/' + this.props.genreSelected + '/' + this.state.selectedPlace.data.businessName.split(' ').join('')))}}> Select your Stylist </button>
-    //   );
-    //     ReactDOM.render(React.Children.only(button), document.getElementById("iwc"));
-    //   }
 
       onInfoWindowOpen() {
         const button = (<button onClick={ async () => { await this.setState({
@@ -61,7 +49,7 @@ export class GoogleMaps extends Component {
             businessName: this.state.selectedPlace.data.businessName.split(' ').join(''),
             img: this.state.selectedPlace.data.img
           }
-        }); console.log(this.state)}}> Book your appointment </button>
+        });}}> Book your appointment </button>
       );
         ReactDOM.render(React.Children.only(button), document.getElementById("iwc"));
       }
@@ -69,9 +57,9 @@ export class GoogleMaps extends Component {
   render() {
     let  genreData = (data) =>{ 
         return (
-          <Marker onMouseover={this.onMouseoverMarker}
+          <Marker onClick={this.onMarkerClick}
             data={data}
-            position={{ lat: data.location.coordinates[0].$numberDecimal, lng: data.location.coordinates[1].$numberDecimal}}/>
+            position={{ lat: data.point.coordinates[0], lng: data.point.coordinates[1]}}/>
             )};
 
     let center = { lat: this.props.clientLocation.lat,
@@ -80,7 +68,7 @@ export class GoogleMaps extends Component {
     let icon = {url: './Assets/currentLocation.svg',scaledSize: new window.google.maps.Size(30,30)}
 
     let displaySidebar = () =>{
-      if(this.state.sideBar.isLoaded === true){
+      if (this.state.sideBar.isLoaded === true){
         return <SideBar companyInfo={this.state.sideBar}/>
       } else {
         return <div className='googleInfo'>
@@ -92,10 +80,6 @@ export class GoogleMaps extends Component {
     return (
       <div className='googleMaps'>
         {displaySidebar()}
-        {/* <div className='googleInfo'> 
-          <img src={this.state.sideBar.img}/>
-          <h1> {this.state.sideBar.businessName}</h1>
-        </div> */}
         <Map mapTypeControl={false} google={this.props.google} containerStyle={{height:'80%', width:'80%'}} zoom={13} center={center}>
             {this.props.genreInfo.map((data) => genreData(data))}
             <Marker position={center} icon={icon} name={'Your Location'}/>
