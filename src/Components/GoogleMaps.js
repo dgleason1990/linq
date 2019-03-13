@@ -43,13 +43,13 @@ export class GoogleMaps extends Component {
         })};
 
       onInfoWindowOpen() {
-        const button = (<button onClick={ async () => { await this.setState({
+        const button = (<div className='googleButton' onClick={ async () => { await this.setState({
           sideBar:{
             isLoaded: true,
-            businessName: this.state.selectedPlace.data.businessName.split(' ').join(''),
+            businessName: this.state.selectedPlace.data.businessName,
             img: this.state.selectedPlace.data.img
           }
-        });}}> Book your appointment </button>
+        });}}> Book your appointment </div>
       );
         ReactDOM.render(React.Children.only(button), document.getElementById("iwc"));
       }

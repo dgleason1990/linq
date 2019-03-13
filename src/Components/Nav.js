@@ -8,6 +8,9 @@ export default class Nav extends Component {
         <Link to='/home'>
             Home
         </Link>
+        <Link to='/Users'>
+            Join the Linq Team
+        </Link>
       </div>
     )
   }

@@ -102,20 +102,31 @@
   background-color: white;
   width: 100vw;
   height: 60px;
-  color: black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
+.navBar a {
+  border: thin black solid;
+  text-decoration: none;
+  padding: 10px;
+  color: black;
+}
+
 .navBar a:visited {
   color: black;
+}
+
+.navBar a:hover {
+  background-color: black;
+  color: white;
 }
 
 .home {
@@ -135,6 +146,14 @@
 
 .home .servicesButton {
   cursor: pointer;
+  border: thin solid #000000;
+  padding: 10px;
+  color: black;
+}
+
+.home .servicesButton:hover {
+  background-color: black;
+  color: white;
 }
 
 .home .title {
@@ -173,15 +192,43 @@
   color: white;
 }
 
+.googleMaps {
+  margin-left: 10px;
+}
+
+.googleMaps .businessCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.googleMaps .businessCard #iwc .googleButton {
+  border: thin solid black;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.googleMaps .businessCard #iwc .googleButton:hover {
+  background-color: black;
+  color: white;
+}
+
 .googleMaps .googleInfo {
   background-color: white;
-  -webkit-box-shadow: 1px 1px black;
-          box-shadow: 1px 1px black;
+  border: thin black solid;
   position: absolute;
   z-index: 10;
   width: 15%;
   height: 80%;
   overflow-y: scroll;
+  padding: 5px;
 }
 
 .googleMaps .googleInfo img {
@@ -380,6 +427,36 @@
           animation-duration: 0.5s;
 }
 
+.googleInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.googleInfo .summaryToggle {
+  padding: 10px;
+  border: thin solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 150px;
+}
+
+.googleInfo .summaryToggle:hover {
+  background-color: black;
+  color: white;
+}
+
 .googleInfo .bookNow {
   padding: 10px;
   border: thin solid black;
@@ -393,6 +470,52 @@
 }
 
 .googleInfo .bookNow:hover {
+  background-color: black;
+  color: white;
+}
+
+.users {
+  background-color: white;
+  padding-top: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.users form {
+  height: 25vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: thin black solid;
+  padding: 10px;
+  width: 500px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.users form div {
+  border: thin black solid;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.users form div:hover {
   background-color: black;
   color: white;
 }

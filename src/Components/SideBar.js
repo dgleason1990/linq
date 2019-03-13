@@ -25,15 +25,16 @@ export default class SideBar extends Component {
             }
             await fetch('http://localhost:8080/company' , init)
             .then( res => res.json())
-            .then( data => this.setState({
+            .then( data => { console.log(data) ;this.setState({
                 address: data.address,
                 businessName: data.businessName,
                 employee: data.employee,
                 services: data.services,
                 id: data.id,
                 img: data.img,
-                summary: data.summary
-            }))
+                summary: data.summary,
+                services: data.services
+            })})
     }
 
     displaySummary = () => {
@@ -54,6 +55,7 @@ export default class SideBar extends Component {
         })
     }
   render() {
+    console.log(this.state)
     return (
       <div className='googleInfo'>
         <img src={this.state.img}/>

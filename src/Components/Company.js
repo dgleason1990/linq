@@ -38,6 +38,7 @@ export default class Company extends Component {
     handleClose = () => {this.setState({ 
         isOpen:false
      })}
+     
   render(){
       let employees = this.state.employee.map(arr=>{
           return (

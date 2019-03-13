@@ -7,6 +7,7 @@ import Genre from './Components/Genre';
 import Businesses from './Components/Businesses';
 import Company from './Components/Company';
 import Booked from './Components/Booked';
+import Users from './Components/Users';
 
 class App extends Component {
   state={
@@ -32,6 +33,7 @@ class App extends Component {
             <Route exact path='/Genre/:id' component={Businesses} />
             <Route exact path='/Genre/:id/:id' component={Company} />
             <Route path='/Booked' component={Booked} />
+            <Route path='/Users' component={Users} />
           </Switch>
         </div>
       </Router>

@@ -41,7 +41,6 @@ sequelize
 
 app.post('/businesses', async (req,res) => {
   let industryId;
-  console.log(req.body)
   await db.Industry.findAll({
     where:{
       industry: req.body.genre
@@ -62,9 +61,37 @@ app.post('/businesses', async (req,res) => {
   })
 })
 
-app.post('/company', (req,res)=>{
-    console.log(req.body.companyName);
-    res.json(companyExample)
+app.post('/company', async (req,res)=>{
+    let companyName = req.body.companyName;
+    let companyInfo;
+    await db.Company.findAll({
+      where:{ 
+        businessName: companyName
+      }
+    })
+    .then( data => {
+      companyInfo = data[0].dataValues
+    })
+
+    let employeeInformation = []
+    await db.Employee.findAll({
+      where:{
+        companyId: companyInfo.id
+      }
+    }).then( data => { 
+      employeeInformation = data;
+      companyInfo.employee = data
+    })
+    
+    employeeIds = [];
+    employeeInformation.forEach( result => employeeIds.push(result.id))
+    await db.Service.findAll({
+      where: {
+        employeeId : employeeIds
+      }
+    }).then( data => { companyInfo.services = data });
+
+    res.json(companyInfo)
 })
 
 app.post('/clientlocation', async (req,res)=>{
@@ -73,11 +100,6 @@ app.post('/clientlocation', async (req,res)=>{
   let clientLocation = result.data.results[0].geometry.location;
   res.json(clientLocation)
 });
-
-app.post('/location', (req,res)=>{
-  console.log(req.body)
-  res.json(examples)
-})
 
 app.post('/booking', (req,res)=>{
       let transporter = nodemailer.createTransport({

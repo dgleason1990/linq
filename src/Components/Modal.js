@@ -34,12 +34,8 @@ class Modal extends Component {
         this.props.history.push('/Booked')
     }
     render() {
-        // let createSelectList = this.props.employeeInfo.map(arr=>{
-        //     return <option value={ arr.name } > { arr.name } </option>
-        // })
-
         let createServiceList = this.props.services.map(arr=>{
-            return <option value={ arr } > { arr } </option>
+            return <option value={ arr.service } > { arr.service } </option>
         })
 
         var yesterday = Datetime.moment().subtract(1, 'day');
