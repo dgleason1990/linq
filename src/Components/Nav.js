@@ -11,6 +11,9 @@ export default class Nav extends Component {
         <Link to='/Users'>
             Join the Linq Team
         </Link>
+        <Link to='/Login'>
+          User Dashboard
+        </Link>
       </div>
     )
   }

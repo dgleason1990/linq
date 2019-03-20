@@ -25,6 +25,7 @@ class Modal extends Component {
         .then(data => this.props.clientLocator(data));
         this.props.history.push('/Genre')
     }
+    
     render() {
         return (
             <div style={{...flex, display: this.props.isOpen ? 'flex' : 'none'}}>

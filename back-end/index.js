@@ -5,10 +5,13 @@ const cors = require('cors');
 const examples = require('./examples');
 const companyExample = require('./companyExample');
 const nodemailer = require('nodemailer');
-const {geolocation} = require('./headers');
+const { geolocation,SECRET_KEY } = require('./headers');
 const axios = require('axios');
 const Sequelize = require('sequelize');
 const db = require('./models')
+const authorization = require('./Authorization');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -129,6 +132,53 @@ app.post('/booking', (req,res)=>{
       })
       res.send('Message has been sent')
   })
+
+app.post('/users',(req,res)=>{
+  let transporter = nodemailer.createTransport({
+    host:'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth:{
+      user: 'david.gleason.portfolio@gmail.com',
+      pass: ';LpJ/8NFLD8qn[]_'
+    },
+    tls:{
+      rejectUnauthrized: false
+    }
+  });
+  let mailOptions={
+    from: 'david.gleason.portfolio@gmail.com',
+    to: 'dgleason1990@gmail.com',
+    subject: 'A booking request from ' + req.body.name,
+    text: req.body.name + ' is interested in becoming part of the team. Their email is ' + req.body.email + ' and their phone number is ' + req.body.phoneNumber +  ". Here's a message by them: " + req.body.message
+  };
+  transporter.sendMail(mailOptions, (err, info)=>{
+    if (err){
+      return console.log(err)
+    }
+    console.log('Message was Sent');
+    console.log(info)
+  })
+  res.send('Message has been sent')
+})
+
+app.post('/login', (req,res)=>{
+  // console.log(req.body)
+  db.User.findAll({
+      where: {
+        username: req.body.username
+      }
+    })
+    .then((response) => { bcrypt.compare(req.body.password, response.password, (err, result)=>{
+        if (result){
+            const token = jwt.sign({id: response.id}, SECRET_KEY, {expiresIn: '10h'});
+            res.json({token: token})
+        } 
+        else res.sendStatus(401).json({'message': 'Invalid Credentials'})
+        })
+    })
+    .catch(err=>console.log(err))
+})
 
 app.listen(8080, () => {
     console.log('You are connected to port 8080')

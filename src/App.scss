@@ -311,3 +311,19 @@ $cardColor: lightgrey;
         }
     }
 }
+
+.loginPage{
+    background-color: white;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    div{
+        border: thin black solid;
+        cursor: pointer;
+        &:hover{
+            background-color: black;
+            color: white;
+        }
+    }
+}

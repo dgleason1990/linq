@@ -8,6 +8,8 @@ import Businesses from './Components/Businesses';
 import Company from './Components/Company';
 import Booked from './Components/Booked';
 import Users from './Components/Users';
+import Login from './Components/Login';
+import Dashboard from './Components/Dashboard'
 
 class App extends Component {
   state={
@@ -34,6 +36,8 @@ class App extends Component {
             <Route exact path='/Genre/:id/:id' component={Company} />
             <Route path='/Booked' component={Booked} />
             <Route path='/Users' component={Users} />
+            <Route path='/Login' component={Login}/>
+            <Route path='/Dashboard/:id' component={Dashboard}/>
           </Switch>
         </div>
       </Router>
