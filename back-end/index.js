@@ -64,6 +64,13 @@ app.post('/businesses', async (req,res) => {
   })
 })
 
+app.get('/genre', async (req,res)=>{
+  let genreArr = [];
+  await db.Industry.findAll()
+  .then(data => {data.map(result => genreArr.push(result.industry))})
+  res.json(genreArr)
+})
+
 app.post('/company', async (req,res)=>{
     let companyName = req.body.companyName;
     let companyInfo;
@@ -121,7 +128,7 @@ app.post('/booking', (req,res)=>{
         from: 'david.gleason.portfolio@gmail.com',
         to: 'dgleason1990@gmail.com',
         subject: 'A booking request from ' + req.body.clientName,
-        text: 'This client is looking to book an appointment with ' + req.body.employeeName + 'at' + req.body.booking
+        text: 'This client is looking to book an appointment with ' + req.body.employeeName + 'at' + req.body.booking +'. Their emails is ' + req.body.email + ' and their phone number is ' + req.body.phoneNumber
       };
       transporter.sendMail(mailOptions, (err, info)=>{
         if (err){
@@ -163,21 +170,33 @@ app.post('/users',(req,res)=>{
 })
 
 app.post('/login', (req,res)=>{
-  // console.log(req.body)
   db.User.findAll({
       where: {
         username: req.body.username
       }
     })
-    .then((response) => { bcrypt.compare(req.body.password, response.password, (err, result)=>{
+    .then((response) => { bcrypt.compare(req.body.password, response[0].password, (err, result)=>{
         if (result){
-            const token = jwt.sign({id: response.id}, SECRET_KEY, {expiresIn: '10h'});
-            res.json({token: token})
+            const token = jwt.sign({username: response[0].username}, SECRET_KEY, {expiresIn: '10h'});
+            res.json({
+              userType: response[0].userType,
+              token: token})
         } 
         else res.sendStatus(401).json({'message': 'Invalid Credentials'})
         })
     })
-    .catch(err=>console.log(err))
+    .catch(err => {console.log(err)})
+})
+
+app.get('/dashboard', authorization, (req,res)=>{
+  let username = data.username
+  db.User.findAll({
+    where:{
+      username: username
+    }
+  })
+  .then(response => res.json(response[0]))
+  .catch(err=>console.log(err))
 })
 
 app.listen(8080, () => {

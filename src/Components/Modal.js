@@ -12,7 +12,9 @@ class Modal extends Component {
         employeeName:'',
         clientName: '',
         booking: '',
-        clientPhone: ''
+        clientPhone: '',
+        address: '',
+        clientEmail: ''
     }
 
     onSubmit = async (e)=>{
@@ -64,7 +66,11 @@ class Modal extends Component {
                         <div> Your Name </div>
                         <input onChange={ (e)=> this.setState({ clientName: e.target.value })}/> 
                         <div> Your Phone Number </div>
-                        <input onChange={ (e)=> this.setState({ clientPhone: e.target.value })}/> 
+                        <input onChange={ (e)=> this.setState({ clientPhone: e.target.value })}/>
+                        <div> Your Email </div>
+                        <input onChange={ (e)=> this.setState({ clientEmail: e.target.value })}/>
+                        <div> Address </div>
+                        <input onChange={ (e)=> this.setState({ address: e.target.value })}/> 
                         <div> Select a preferred date and time </div>
                         <Datetime 
                             timeConstraints = {{

@@ -9,7 +9,7 @@ import Company from './Components/Company';
 import Booked from './Components/Booked';
 import Users from './Components/Users';
 import Login from './Components/Login';
-import Dashboard from './Components/Dashboard'
+import AdminDashboard from './Components/AdminDashboard'
 
 class App extends Component {
   state={
@@ -37,7 +37,7 @@ class App extends Component {
             <Route path='/Booked' component={Booked} />
             <Route path='/Users' component={Users} />
             <Route path='/Login' component={Login}/>
-            <Route path='/Dashboard/:id' component={Dashboard}/>
+            <Route path='/AdminDashboard/:id' component={AdminDashboard}/>
           </Switch>
         </div>
       </Router>

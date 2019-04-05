@@ -8,8 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     username: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    userType: DataTypes.STRING
   }, {
+    timestamp:false,
     underscored: true,
   });
   User.associate = function(models) {

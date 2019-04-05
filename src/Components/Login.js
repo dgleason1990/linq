@@ -7,10 +7,11 @@ export default class Login extends Component {
         this.passwordRef = React.createRef();
       }
 
-    state={
+    state = {
         id: '',
         username: '',
-        password: ''
+        password: '',
+        userType: ''
     }
     
     submitLogin = async ()=>{
@@ -27,11 +28,27 @@ export default class Login extends Component {
         }
 
         await fetch('http://localhost:8080/login', init)
-        .then( data => {
-            this.setState({ id: data.id });
-            localStorage.setItem('token', data.token)
-        })
-        this.props.history.push('/Dashboard' + this.state.id)
+        .then(res => res.json())
+        .then( async data => {
+            if( data.token !== undefined ){
+                localStorage.setItem('token', data.token);
+                await this.setState({
+                  userType: data.userType
+                })
+                if(this.state.username === 'admin'){
+                this.props.history.push('/AdminDashboard/' + this.state.username)
+                }
+                else if (this.state.username === 'company'){
+                  this.props.history.push('/CompanyDashboard/' + this.state.username)
+                }
+                else if (this.state.username === 'user'){
+                  this.props.history.push('/Dashboard/' + this.state.username)
+                }
+            } 
+            else {
+                window.alert('Credentials are incorrect')
+            }
+        })          
     }
   render() {
     return (
@@ -39,7 +56,7 @@ export default class Login extends Component {
         <form>
             <label for='username'>
                 Username:
-                <input ref={this.usernameRef}/>
+                <input type='username' ref={this.usernameRef}/>
             </label>
             <label for='passsword'>
                 Password:

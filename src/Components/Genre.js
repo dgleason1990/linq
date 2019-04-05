@@ -18,6 +18,13 @@ export default class Genre extends Component {
     }],
   }
 
+  async componentWillMount(){
+    console.log('rendering')
+    await fetch('http://localhost:8080/genre')
+    .then(res=>res.json())
+    .then(data => console.log(data))
+  }
+
   render() {
       let displayGenre2 = this.state.genre.map(arr=>{
         return( 
